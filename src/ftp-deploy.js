@@ -81,8 +81,12 @@ const FtpDeployer = function() {
         return this.ftp.connect(config).then(serverMessage => {
             this.emit("log", "Connected to: " + config.host);
             this.emit("log", "Connected: Server message: " + serverMessage);
+            console.log("connected");
 
             return config;
+        }).catch((e)=>{
+          console.error(e);
+          this.emit('_error', e);
         });
     };
 
